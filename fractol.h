@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 17:51:44 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/07/19 19:30:12 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/07/21 20:07:54 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 #include <mlx.h>
 
-float	power(float x, int n);
-float	mag(float x, float y);
-int		fractol(float x, float y);
+float	power(double x, int n);
+float	mag(double x, double y);
+void	fractol(double x, double y, int width, int height, int maxIter);
 
 #endif

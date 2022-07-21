@@ -9,10 +9,10 @@ int main()//int x, int y
 	void *win = mlx_new_window(mlx_ptr, 500, 500, "title");
 	void *img = mlx_new_image(mlx_ptr, 500, 500);
 	int put = mlx_put_image_to_window(mlx_ptr, win, img, 0, 0);
-	unsigned int color = mlx_get_color_value(mlx_ptr, 255);
+	unsigned int color = mlx_get_color_value(mlx_ptr, 0x0400FC);
 	while (n--)
 	{
-		mlx_pixel_put(mlx_ptr, win, x, y, 255);
+		mlx_pixel_put(mlx_ptr, win, x, y, 0xFF5733);
 		x--;
 		y--;
 	}
