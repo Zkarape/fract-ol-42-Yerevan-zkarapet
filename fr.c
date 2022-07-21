@@ -2,7 +2,7 @@
 #include "fractol.h"
 #include <mlx.h>
 //from real to the needed range
-double	map_real_part(double x, int width, int min, int max)
+double	map_real_part(double x, double width, int min, int max)
 {
 	int	range = max - min;//output range
 	//input range [0, width] => width - 0
@@ -13,12 +13,12 @@ double	map_real_part(double x, int width, int min, int max)
 	return (x * (range / width) + min);
 }
 
-double	map_img_part(double y, int height, int min, int max)
+double	map_img_part(double y, double height, int min, int max)
 {
 	return (y * ((max- min) / height) + min);
 }
 
-int	set_check(double x, double y, int width, int height, int maxIter)
+void	set_check(double x, double y, double width, double height, int maxIter)
 {
 	double	x_c;//x_complex
 	double	y_c;//y_complex
@@ -27,6 +27,8 @@ int	set_check(double x, double y, int width, int height, int maxIter)
 	double	a_c;
 	double	b = map_img_part(y, height, -2, 2);
 	double	b_c;
+	void	*mlx_ptr = mlx_init();
+	void	*win_ptr = mlx_new_window(mlx_ptr, 500, 500, "fract'ol");
 	
 	n = -1;
 	a_c = a;
@@ -38,29 +40,26 @@ int	set_check(double x, double y, int width, int height, int maxIter)
 		a = x_c + a_c;
 		b = y_c + b_c;
 	}
-	return (n);
+	if (n < maxIter)
+		mlx_pixel_put(mlx_ptr, win_ptr, a, b, 072551);
+	mlx_loop(mlx_ptr);
 }
 
 int main()
 {
-	int	i;
-	int	j;
-	int width;
-	void	*mlx_ptr = mlx_init();
-	void	*win_ptr = mlx_new_window(mlx_ptr, 500, 500, "fract'ol");
-	int	height;
+	double	x;
+	double	y;
+	double	width;
+	double	height;
 
-	i = -1;
-	j = -1;
+	x = -1;
+	y = -1;
 	width = 500;
 	height = 500;
-	while (++i < width)
+	while (++x < height)
 	{
-		j = 0;
-		while (++j < height)
-		{
-			mlx_pixel_put(mlx_ptr, win_ptr, a, b, 072551);
-			
-		}
+		y = 0;
+		while (++y < width)
+			set_check(x, y, width, height, 40);
 	}
 }
