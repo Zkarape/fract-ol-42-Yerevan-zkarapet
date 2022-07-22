@@ -18,17 +18,15 @@ double	map_img_part(double y, double height, int min, int max)
 	return (y * ((max- min) / height) + min);
 }
 
-void	set_check(double x, double y, double width, double height, int maxIter)
+void	set_check(mlx coord, int maxIter)
 {
 	double	x_c;//x_complex
 	double	y_c;//y_complex
 	int		n;
-	double	a = map_real_part(x, width, -2, 2);
+	double	a = map_real_part(coord.x, coord.width, -2, 2);
 	double	a_c;
-	double	b = map_img_part(y, height, -2, 2);
+	double	b = map_img_part(coord.y, coord.height, -2, 2);
 	double	b_c;
-	void	*mlx_ptr = mlx_init();
-	void	*win_ptr = mlx_new_window(mlx_ptr, 500, 500, "fract'ol");
 	
 	n = -1;
 	a_c = a;
@@ -40,26 +38,30 @@ void	set_check(double x, double y, double width, double height, int maxIter)
 		a = x_c + a_c;
 		b = y_c + b_c;
 	}
+	printf("%f %f %d\n", a, b, n);
 	if (n < maxIter)
-		mlx_pixel_put(mlx_ptr, win_ptr, a, b, 072551);
-	mlx_loop(mlx_ptr);
+	{
+		printf("done");
+		mlx_pixel_put(coord.mlx_ptr, coord.win_ptr, a, b, 0xFFFFFF);
+	}
 }
 
 int main()
 {
-	double	x;
-	double	y;
-	double	width;
-	double	height;
+	mlx		coord;
 
-	x = -1;
-	y = -1;
-	width = 500;
-	height = 500;
-	while (++x < height)
+	coord.x = 0;
+	coord.y = 0;
+	coord.width = 500;
+	coord.height = 500;
+	coord.mlx_ptr = mlx_init();
+	coord.win_ptr = mlx_new_window(coord.mlx_ptr, coord.width, coord.height, "fract'ol");
+	coord.img_ptr = mlx_new_image(coord.mlx_ptr, coord.width, coord.height); 
+	while (++coord.x < coord.height)
 	{
-		y = 0;
-		while (++y < width)
-			set_check(x, y, width, height, 40);
+		coord.y = 0;
+		while (++coord.y < coord.width)
+			set_check(coord, 40);
 	}
+	mlx_loop(coord.mlx_ptr);
 }
