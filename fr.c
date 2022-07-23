@@ -23,22 +23,21 @@ void	set_check(mlx coord, int maxIter)
 	double	x_c;//x_complex
 	double	y_c;//y_complex
 	int		n;
-	double	a = map_real_part(coord.x, coord.width, -2, 2);
-	double	a_c;
-	double	b = map_img_part(coord.y, coord.height, -2, 2);
-	double	b_c;
+	double	a_c = map_real_part(coord.x, coord.width, -2, 2);
+	double	a;
+	double	b_c = map_img_part(coord.y, coord.height, -2, 2);
+	double	b;
 	
 	n = -1;
-	a_c = a;
-	b_c = b;
+	a = coord.x;
+	b = coord.y;
 	while(++n < maxIter && a * a + b * b <= 4)
 	{
-		x_c = a * a - b * b;
-		y_c = 2 * a * b;
-		a = x_c + a_c;
-		b = y_c + b_c;
+		x_c = a * a - b * b + a_c;
+		y_c = 2 * a * b + b_c;
+		a = x_c;
+		b = y_c;
 	}
-	printf("%f %f %d\n", a, b, n);
 	if (n < maxIter)
 	{
 		printf("done");
