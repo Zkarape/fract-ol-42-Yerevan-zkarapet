@@ -24,7 +24,7 @@ int	set_check(mlx coord, int maxIter)
 	double	x_c;//x_complex
 	double	y_c;//y_complex
 	int		n;
-	double	cr; 
+	double	cr;	
 	double	ci;
 	double	a;
 	double	b;
@@ -36,19 +36,18 @@ int	set_check(mlx coord, int maxIter)
 	b = coord.y;
 	cr = map_real_part(a, coord.width, -2, 2);
 	ci = map_img_part(b, coord.height, -2, 2);
-	printf("%f %f\n", cr, ci);
+	double cr0 = cr;
+	double ci0 = ci;
 	while(n < maxIter)
 	{
-		x_c = a * a - b * b;
-		y_c = 2 * a * b;
-		a = x_c + cr;
-		b = y_c + ci;
-		if (a * a + b * b > 4)
+		x_c = cr * cr - ci * ci;
+		y_c = 2 * cr * ci;
+		cr = x_c + cr0;
+		ci = y_c + ci0;
+		if (ci + cr > 2)
 		{
-			co++;
 			return (n);
 		}
-		ham++;
 		n++;
 	}
 	//printf("%d %d\n", ham, co);
@@ -62,17 +61,17 @@ int main()
 
 	coord.x = 0;
 	coord.y = 0;
-	coord.width = 500;
-	coord.height = 500;
+	coord.width = 300;
+	coord.height = 300;
 	coord.mlx_ptr = mlx_init();
-	coord.win_ptr = mlx_new_window(coord.mlx_ptr, coord.width, coord.height, "fract'ol");
+	coord.win_ptr = mlx_new_window(coord.mlx_ptr, 500, 500, "fract'ol");
 	coord.img_ptr = mlx_new_image(coord.mlx_ptr, coord.width, coord.height); 
-	while (coord.x < 2)
+	while (coord.x < 300)
 	{
 		coord.y = 0;
-		while (coord.y < 2)
+		while (coord.y < 300)
 		{
-			if (set_check(coord, 30) == 0)
+			if (set_check(coord, 50) == 0)
 			{
 				mlx_pixel_put(coord.mlx_ptr, coord.win_ptr, coord.x, coord.y, 0xFFFFFF);
 			}
@@ -80,9 +79,9 @@ int main()
 			{
 				mlx_pixel_put(coord.mlx_ptr, coord.win_ptr, coord.x, coord.y, 255 * 100);
 			}
-			coord.y += 0.01;
+			coord.y++;;
 		}
-		coord.x += 0.01;
+		coord.x++;
 	}
 	mlx_loop(coord.mlx_ptr);
 }
