@@ -43,23 +43,7 @@ double	v_formula(double iter_count, double maxIter, double N)//N is the count of
 	double res;
 
 	d = power((iter_count / maxIter), 3);
-	printf("d == %f\n", d);
 	res = power(d * N, 2) / sqroot(d * N);
-	printf("res == %f %f %f\n", d * N, power(d * N, 2), sqroot(d * N));
 	v = find_mod(res, N);
-	printf("v == %f\n", v);
 	return (v);
-}
-
-//double	color_magic()
-//{
-//
-//}
-
-int main()
-{
-//	sqroot(9);
-	printf("%f\n", v_formula(20, 50, 4));
-//	printf("%f\n", power(4, 2));
-//	printf("%f\n", sqroot(9));
 }
