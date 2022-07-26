@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fr.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/26 13:33:11 by zkarapet          #+#    #+#             */
+/*   Updated: 2022/07/26 13:54:07 by zkarapet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include "fractol.h"
 #include <mlx.h>
@@ -21,38 +33,27 @@ double	map_img_part(double y, double height, double minI, double maxI)
 
 int	set_check(mlx coord, int maxIter)
 {
-	double	x_c;//x_complex
-	double	y_c;//y_complex
+	double	x_cmplx;
+	double	y_cmplx;
 	int		n;
-	double	cr;	
+	double	cr;
 	double	ci;
-	double	a;
-	double	b;
-	static int	co = 0;
-	static int	ham = 0;
-	
-	n = 0;
-	a = coord.x;
-	b = coord.y;
-	cr = map_real_part(a, coord.width, -2, 2);
-	ci = map_img_part(b, coord.height, -2, 2);
-	double cr0 = cr;
-	double ci0 = ci;
-	while(n < maxIter)
+	double	cr0;
+	double	ci0;
+
+	n = -1;
+	cr = map_real_part(coord.x, coord.width, -2, 2);
+	ci = map_img_part(coord.y, coord.height, -2, 2);
+	cr0 = cr;
+	ci0 = ci;
+	while(++n < maxIter && ci * ci + cr * cr < 4)
 	{
-		x_c = cr * cr - ci * ci;
-		y_c = 2 * cr * ci;
-		cr = x_c + cr0;
-		ci = y_c + ci0;
-		if (ci + cr > 2)
-		{
-			return (n);
-		}
-		n++;
+		x_cmplx = cr * cr - ci * ci;
+		y_cmplx = 2 * cr * ci;
+		cr = x_cmplx + cr0;
+		ci = y_cmplx + ci0;
 	}
-	//printf("%d %d\n", ham, co);
-	//printf("%d\n", n);
-	return (0);
+	return (n);
 }
 
 int main()
@@ -61,24 +62,21 @@ int main()
 
 	coord.x = 0;
 	coord.y = 0;
+	coord.maxIter = 50;
 	coord.width = 300;
 	coord.height = 300;
 	coord.mlx_ptr = mlx_init();
 	coord.win_ptr = mlx_new_window(coord.mlx_ptr, 500, 500, "fract'ol");
-	coord.img_ptr = mlx_new_image(coord.mlx_ptr, coord.width, coord.height); 
-	while (coord.x < 300)
+	coord.img_ptr = mlx_new_image(coord.mlx_ptr, coord.width, coord.height);
+	coord.img_to_win = mlx_put_image_to_window(coord.mlx_ptr, coord.win_ptr, coord.img_ptr, 0, 0);
+	while (coord.x < coord.height)
 	{
 		coord.y = 0;
-		while (coord.y < 300)
+		while (coord.y < coord.width)
 		{
-			if (set_check(coord, 50) == 0)
-			{
-				mlx_pixel_put(coord.mlx_ptr, coord.win_ptr, coord.x, coord.y, 0xFFFFFF);
-			}
-			else
-			{
-				mlx_pixel_put(coord.mlx_ptr, coord.win_ptr, coord.x, coord.y, 255 * 100);
-			}
+			coord.iter_count = set_check(coord, coord.maxIter);
+			if (coord.iter_count == coord.maxIter)
+				mlx_pixel_put(coord.mlx_ptr, coord.win_ptr, coord.x, coord.y, 25500);
 			coord.y++;;
 		}
 		coord.x++;
