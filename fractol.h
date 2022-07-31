@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 21:36:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/07/26 22:20:21 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/07/31 20:58:57 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,33 @@
 
 typedef struct mlx
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	int		imput;
 	double	x;
 	double	y;
+	double	r;
+	double	i;
 	double	width;
 	double	height;
 	double	cr;
 	double	ci;
+	double	origin_r;
+	double	origin_y;
 	int		k;
 	int		maxiter;
 	int		k_hook;
 	int		m_hook;
+	char	*scale_arg;
 }	t_mlx;
+
+typedef struct data
+{
+	void	*mlx;
+	void	*win;
+	char	*addr;
+	void	*img;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_data;
 
 int		set_check(t_mlx coord, int maxIter);
 double	map_img_part(double y, double height, double minI, double maxI);
