@@ -1,34 +1,50 @@
 #include "fractol.h"
 
+//void	zoom_in(int x, int y, t_mlx *coord)
+//{
+//	coord->r = x + (coord->x - coord->width / 2) * coord->scale_factor;
+//	coord->i = y - (coord->y - coord->height / 2) * coord->scale_factor;
+//}
+//
+//void	zoom_out(int x, int y, t_mlx *coord)
+//{
+//	coord->x = (coord->r - x) / coord->scale_factor + coord->width / 2;
+//	coord->y = (y - coord->i) / coord->scale_factor + coord->height / 2;
+//}
+
 void	zoom_in(int x, int y, t_mlx *coord)
 {
-	coord->scale_factor = ft_double_atoi(coord->scale_arg);
-	coord->x1 =  x * coord->scale_factor;
-	coord->y1 = y * coord->scale_factor;
+	coord->r = (x / coord->scale_factor + coord->r) - (x / coord->scale_factor);
+	printf("%d %f x == %d\n", __LINE__, coord->r, x);
+	coord->i = (y / coord->scale_factor + coord->i) - (y / coord->scale_factor);
+	printf("%d %f y == %d\n", __LINE__, coord->i, y);
 }
 
 void	zoom_out(int x, int y, t_mlx *coord)
 {
-	x = x / coord->scale_factor;
-	y = y / coord->scale_factor;
+	coord->r = (x / coord->scale_factor + coord->r) - (x * coord->scale_factor);
+	printf("%d %f\n", __LINE__, coord->r);
+	coord->i = (y / coord->scale_factor + coord->i) - (y * coord->scale_factor);
+	printf("%d %f\n", __LINE__, coord->i);
 }
 
-int	close(int keycode, t_data *data)
+int	close(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
 	return (0);
 }
 
-void	mouse_hook(int mousecode, int x, int y, t_mlx *coord)
+int	mouse_hook(int mousecode, int x, int y, t_mlx *coord)
 {
 	if (mousecode == 4)
 		zoom_in(x, y, coord);
-	else if (keycode == 5)
+	else if (mousecode == 5)
 		zoom_out(x, y, coord);
+	return (0);
 }
 
-void	key_hook(int keycode, t_mlx *coord, t_data *data)
+void	key_hook(int keycode, t_data *data)
 {
-	else if (keycode == 53)
-		mlx_hook(data->win, 53, 1L<<0, close, data);
+	if (keycode == 53)
+		mlx_key_hook(data->win, &close, data);
 }

@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 21:36:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/07/31 20:58:57 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:34:08 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 # define FRACTOL_H
 
 # include <mlx.h>
+
+typedef struct data
+{
+	void	*mlx;
+	void	*win;
+	char	*addr;
+	void	*img;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_data;
 
 typedef struct mlx
 {
@@ -27,23 +38,14 @@ typedef struct mlx
 	double	ci;
 	double	origin_r;
 	double	origin_y;
+	double	scale_factor;
+	char	*scale_arg;
 	int		k;
 	int		maxiter;
 	int		k_hook;
 	int		m_hook;
-	char	*scale_arg;
+	t_data	data;
 }	t_mlx;
-
-typedef struct data
-{
-	void	*mlx;
-	void	*win;
-	char	*addr;
-	void	*img;
-	int		bpp;
-	int		line_length;
-	int		endian;
-}	t_data;
 
 int		set_check(t_mlx coord, int maxIter);
 double	map_img_part(double y, double height, double minI, double maxI);

@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 21:36:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/01 20:41:04 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/02 20:22:42 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FRACTOL_H
 
 # include <mlx.h>
+# include <stdlib.h>
+#include <stdio.h>
 
 typedef struct data
 {
@@ -39,7 +41,6 @@ typedef struct mlx
 	double	origin_r;
 	double	origin_y;
 	double	scale_factor;
-	char	*scale_arg;
 	int		k;
 	int		maxiter;
 	int		k_hook;
@@ -47,12 +48,18 @@ typedef struct mlx
 	t_data	data;
 }	t_mlx;
 
-int		set_check(t_mlx coord, int maxIter);
+int		set_check(t_mlx *coord, int maxIter);
 double	map_img_part(double y, double height, double minI, double maxI);
 double	map_real_part(double x, double width, double minR, double maxR);
 double	power(double x, int n);
 double	sqroot(double x);
 double	find_mod(double a, double b);
 double	v_formula(double iter_count, double maxIter, double N);
+void	zoom_in(int x, int y, t_mlx *coord);
+void	zoom_out(int x, int y, t_mlx *coord);
+int 	close(t_data *data);
+int		mouse_hook(int mousecode, int x, int y, t_mlx *coord);
+void	key_hook(int keycode, t_data *data);
+double	ft_double_atoi(char *str);
 
 #endif

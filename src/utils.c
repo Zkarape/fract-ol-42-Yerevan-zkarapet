@@ -2,7 +2,6 @@ double	ft_double_atoi(char *str)
 {
 	double	res0 = 0;
 	double	res1 = 0;
-	double	res;
 	int		i = 0;
 	
 	while (str[i] >= 48 && str[i] <= 57)
