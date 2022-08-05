@@ -1,15 +1,15 @@
 NAME	= fractol
 
-SRC		= $(wildcard *.c)
+SRCS	= $(wildcard *.c)
 
-OBJS	= $(SRC:.c=.o)
+OBJS	= $(SRCS:.c=.o)
 
 GCC		= cc
 MLX		= -lmlx -framework OpenGL -framework AppKit
 FLAGS	= -Wall -Werror -Wextra
 
 $(NAME): $(OBJS)
-	$(GCC) $(MLX) $(FLAGS) -c $(SRCS) -I ./
+	$(GCC) $(MLX) $(FLAGS) $(OBJS) -o $(NAME) -I ./
 all: $(NAME)
 clean:
 	rm -rf $(OBJS)

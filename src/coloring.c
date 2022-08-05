@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "fractol.h"
 
 double	power(double x, int n)
 {
@@ -37,14 +37,14 @@ double	find_mod(double a, double b)
 	return (mod);
 }
 
-double	v_formula(double iter_count, double maxIter, double N)//N is the count of palette items
+double	v_formula(t_mlx *coord)//N is the count of palette items
 {
 	double	v;
 	double	d;
 	double res;
 
-	d = power((iter_count / maxIter), 3);
-	res = power(d * N, 2) / sqroot(d * N);
-	v = find_mod(res, N);
+	d = power(((double)coord->k / (double)coord->maxiter), 3);
+	res = power(d * coord->N, 2) / sqroot(d * coord->N);
+	v = find_mod(res, coord->N);
 	return (v);
 }

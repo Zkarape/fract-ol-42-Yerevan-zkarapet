@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 21:36:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/05 13:06:11 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/05 21:07:21 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@
 # include <mlx.h>
 # include <stdlib.h>
 #include <stdio.h>
-
-typedef struct s_complex
-{
-	double	real;
-	double	imag;
-}	comp;
-
 
 typedef struct data
 {
@@ -47,10 +40,9 @@ typedef struct mlx
 	double	ci;
 	double	scale_factor;
 	int		k;
+    double  N;
 	int		maxiter;
-	int		k_hook;
-	int		m_hook;
-	int		palette[8];
+	int		color;
 	t_data	*data;
 }	t_mlx;
 
@@ -60,13 +52,15 @@ double	map_real_part(double x, double width, double minR, double maxR);
 double	power(double x, int n);
 double	sqroot(double x);
 double	find_mod(double a, double b);
-double	v_formula(double iter_count, double maxIter, double N);
+double	v_formula(t_mlx *coord);
 void	zoom_in(int x, int y, t_mlx *coord);
 void	zoom_out(int x, int y, t_mlx *coord);
 int 	close(t_data *data);
 int		mouse_hook(int mousecode, int x, int y, t_mlx *coord);
 int		key_hook(int keycode, t_data *data);
 double	ft_double_atoi(char *str);
-void	mandelbrot(int palette[8], t_mlx *coord, t_data *data);
+void	mandelbrot(t_mlx *coord, t_data *data);
+void	my_mlx_pixel_put(t_data *data, double x, double y, int color);
+int     ft_strncmp(char *s1, char *s2, unsigned int n);
 
 #endif
