@@ -17,8 +17,8 @@ int	set_check(t_mlx *coord)
 	{
 		x_cmplx = coord->cr * coord->cr - coord->ci * coord->ci;
 		y_cmplx = 2 * coord->cr * coord->ci;
-		coord->cr = x_cmplx + coord->cr;
-		coord->ci = y_cmplx + coord->ci;
+		coord->cr = x_cmplx + cr0;
+		coord->ci = y_cmplx + ci0;
 	}
 	return (n);
 }

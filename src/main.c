@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:33:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/05 21:04:50 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/05 21:20:44 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	data_declare(double width, double height, t_data *data)
 	data->addr = mlx_get_data_addr(data->img, &data->bpp, &data->line_length, &data->endian);
 }
 
-int	main()
+int	main(int argc, char **argv)
 {
 	t_mlx	*coord;
 	t_data	*data;
@@ -61,8 +61,10 @@ int	main()
 	declare(coord);
 	data_declare(coord->width, coord->height, data);
 	coord->data = data;
-	//if (ft_strcmp(argv[1], "./mandelbrot") == 0)
+	if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
 	    mandelbrot(coord, data);
+    else if (ft_strncmp(argv[1], "julia", 5) == 0)
+	    julia(coord, data);
 	mlx_key_hook(data->win, &key_hook, data);
 	mlx_mouse_hook(data->win, &mouse_hook, coord);
 	mlx_loop(data->mlx);
