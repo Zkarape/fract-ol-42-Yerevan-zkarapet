@@ -5,8 +5,8 @@ int	julia_check(t_mlx *coord)
 	double	x_cmplx;
     double	y_cmplx;
 	int		n;
-	double	cr0;
-	double	ci0;
+    double  cr0 = 0.5;
+    double  ci0 = 0.5;
 
 	n = -1;
 	coord->cr = coord->x / coord->scale_factor + coord->r;
@@ -15,8 +15,8 @@ int	julia_check(t_mlx *coord)
 	{
 		x_cmplx = coord->cr * coord->cr - coord->ci * coord->ci;
 		y_cmplx = 2 * coord->cr * coord->ci;
-		coord->cr = x_cmplx + cr0;
-		coord->ci = y_cmplx + ci0;
+		coord->cr = x_cmplx - cr0;
+		coord->ci = y_cmplx - ci0;
 	}
 	return (n);
 }
@@ -29,7 +29,7 @@ void	julia(t_mlx *coord, t_data *data)
 		coord->y = 0;
 		while (coord->y < coord->height)
 		{
-			coord->k = set_check(coord);
+			coord->k = julia_check(coord);
 			if (coord->k == coord->maxiter)
 				my_mlx_pixel_put(data, coord->x, coord->y, 0x000000);
 			else
@@ -38,5 +38,6 @@ void	julia(t_mlx *coord, t_data *data)
 		}
 		coord->x++;
 	}
+    coord->flag = 1;
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }

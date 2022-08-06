@@ -1,5 +1,12 @@
 #include "fractol.h"
 
+//int julia_animation(int x, int y, t_mlx *coord)
+//{
+//    coord->zr = (x * 2) / (double)coord->width;
+//    coord->zi = (y * 2 - 800) / (double)coord->width;
+//    return (0);
+//}
+
 void	zoom_in(int x, int y, t_mlx *coord)
 {
 	coord->r = ((double)x / coord->scale_factor + coord->r) - ((double)x / (coord->scale_factor * 1.3));
@@ -20,7 +27,10 @@ int	mouse_hook(int mousecode, int x, int y, t_mlx *coord)
 		zoom_in(x, y, coord);
 	else if (mousecode == 4)
 		zoom_out(x, y, coord);
-	mandelbrot(coord, coord->data);
+    if (coord->flag == 0)
+    	mandelbrot(coord, coord->data);
+    else if (coord->flag == 1)
+        julia(coord, coord->data);
 	return (0);
 }
 

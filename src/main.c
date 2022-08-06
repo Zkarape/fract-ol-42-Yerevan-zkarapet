@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:33:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/05 21:20:44 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/06 12:56:48 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ void	declare(t_mlx *coord)
 	coord->width = 800;
 	coord->height = 800;
     coord->color = 240255;
-    coord->N = 200;
+    //coord->N = 200;
+    //coord->zr = -2;
+  //  coord->zi = -0.5;
+    coord->N = coord->argv_N;
 }
 
 void	data_declare(double width, double height, t_data *data)
@@ -58,13 +61,14 @@ int	main(int argc, char **argv)
 
 	data = malloc(sizeof(t_data));
 	coord = malloc(sizeof(t_mlx));
+    coord->argv_N = ft_atoi(argv[2]);
 	declare(coord);
 	data_declare(coord->width, coord->height, data);
 	coord->data = data;
 	if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
-	    mandelbrot(coord, data);
-    else if (ft_strncmp(argv[1], "julia", 5) == 0)
-	    julia(coord, data);
+        mandelbrot(coord, data);
+   else if (ft_strncmp(argv[1], "julia", 5) == 0)
+        julia(coord, data);
 	mlx_key_hook(data->win, &key_hook, data);
 	mlx_mouse_hook(data->win, &mouse_hook, coord);
 	mlx_loop(data->mlx);

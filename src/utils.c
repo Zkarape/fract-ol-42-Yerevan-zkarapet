@@ -1,24 +1,18 @@
-double	ft_double_atoi(char *str)
+double	ft_atoi(const char *str)
 {
-	double	res0 = 0;
-	double	res1 = 0;
-	int		i = 0;
-	
+	unsigned int	res;
+	int				min;
+	int				i;
+
+	min = 1;
+	res = 0;
+	i = 0;
 	while (str[i] >= 48 && str[i] <= 57)
 	{
-		res0 = res0 * 10 + (str[i] - '0');
+		res = res * 10 + (str[i] - '0');
 		i++;
 	}
-	if (str[i] == '/')
-	{
-		i++;	
-		while (str[i] >= 48 && str[i] <= 57)
-		{
-			res1 = res1 * 10 + (str[i] - '0');
-			i++;
-		}
-}
-	return (res0 / res1);
+	return ((double)res * min);
 }
 
 int	ft_strncmp(char *s1, char *s2, unsigned int n)

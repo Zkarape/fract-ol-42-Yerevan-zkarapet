@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 21:36:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/05 21:28:09 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/06 12:49:19 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,20 @@ typedef struct mlx
 	int		height;
 	double	cr;
 	double	ci;
+   // double	zi;
+   // double	zr;
 	double	scale_factor;
 	int		k;
     double  N;
+    double  argv_N;
 	int		maxiter;
 	int		color;
+    int     flag;
 	t_data	*data;
 }	t_mlx;
 
-int		set_check(t_mlx *coord);
+double  ft_atoi(const char *str);
+int	    set_check(t_mlx *coord);
 int		julia_check(t_mlx *coord);
 double	map_img_part(double y, double height, double minI, double maxI);
 double	map_real_part(double x, double width, double minR, double maxR);
