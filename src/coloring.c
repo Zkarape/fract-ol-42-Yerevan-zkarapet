@@ -37,7 +37,7 @@ double	find_mod(double a, double b)
 	return (mod);
 }
 
-double	v_formula(t_mlx *coord)
+double	v_formula(t_mlx *coord)//N is the count of palette items
 {
 	double	v;
 	double	d;

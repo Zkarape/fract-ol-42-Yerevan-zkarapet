@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 21:36:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/06 12:49:19 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/07 16:01:30 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct mlx
 	int		height;
 	double	cr;
 	double	ci;
-   // double	zi;
-   // double	zr;
+    double	zi;
+    double	zr;
 	double	scale_factor;
 	int		k;
     double  N;
@@ -50,6 +50,8 @@ typedef struct mlx
 	t_data	*data;
 }	t_mlx;
 
+void    ft_putendl(char *s);
+int     julia_animation(int x, int y, t_mlx *coord);
 double  ft_atoi(const char *str);
 int	    set_check(t_mlx *coord);
 int		julia_check(t_mlx *coord);

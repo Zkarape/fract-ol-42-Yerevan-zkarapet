@@ -40,6 +40,5 @@ void	mandelbrot(t_mlx *coord, t_data *data)
 		}
 		coord->x++;
 	}
-    coord->flag = 0;
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }

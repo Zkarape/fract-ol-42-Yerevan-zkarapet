@@ -6,28 +6,25 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:33:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/06 12:56:48 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/07 16:03:20 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
 
-//double	map_real_part(double x, double width, double min_r, double max_r)
-//{
-//	double	range;
-//
-//	range = max_r - min_r;
-//	return (x * (range / width) + min_r);
-//}
-//
-//double	map_img_part(double y, double height, double min_i, double max_i)
-//{
-//	double	range;
-//
-//	range = max_i - min_i;
-//	return (y * (range / height) + min_i);
-//}
+double	map_real_part(double x, double width, double min_r, double max_r)
+{
+	double	range;
+
+	range = max_r - min_r;
+	return (x * (range / width) + min_r);
+}
+
+double	map_img_part(double y, double height, double min_i, double max_i)
+{
+	return (y * ((max_i - min_i) / height) + min_i);
+}
 
 void	declare(t_mlx *coord)
 {
@@ -40,9 +37,8 @@ void	declare(t_mlx *coord)
 	coord->width = 800;
 	coord->height = 800;
     coord->color = 240255;
-    //coord->N = 200;
-    //coord->zr = -2;
-  //  coord->zi = -0.5;
+    coord->zr = -0.5;
+    coord->zi = -0.5;
     coord->N = coord->argv_N;
 }
 
@@ -65,11 +61,27 @@ int	main(int argc, char **argv)
 	declare(coord);
 	data_declare(coord->width, coord->height, data);
 	coord->data = data;
-	if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
-        mandelbrot(coord, data);
-   else if (ft_strncmp(argv[1], "julia", 5) == 0)
-        julia(coord, data);
-	mlx_key_hook(data->win, &key_hook, data);
+    if (argc >= 2)
+    {
+    	if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
+        {
+            coord->flag = 3;
+            mandelbrot(coord, data);
+        }
+        else if (ft_strncmp(argv[1], "julia", 5) == 0)
+        {
+            coord->flag = 1;
+            julia(coord, data);
+        }
+    }
+    else if (argc == 1)
+    {
+        ft_putendl("Fractal name : mandelbrot || julia");
+        ft_putendl("int N for color change");
+        return (0);
+    }
+    mlx_hook(coord->data->win, 6, 1L<<6, &julia_animation, coord);
+    mlx_key_hook(data->win, &key_hook, data);
 	mlx_mouse_hook(data->win, &mouse_hook, coord);
 	mlx_loop(data->mlx);
 }
