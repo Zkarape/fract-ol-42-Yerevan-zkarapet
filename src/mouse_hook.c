@@ -32,15 +32,14 @@ int	mouse_hook(int mousecode, int x, int y, t_mlx *coord)
     	mandelbrot(coord, coord->data);
     else if (coord->flag == 1)
         julia(coord, coord->data);
+    else if (coord->flag == 2)
+        bonus_fractal(coord, coord->data);
     return (0);
 }
 
-int	key_hook(int keycode, t_data *data)
+int destroy(t_data *data)
 {
-	if (keycode == 53)
-	{
-		mlx_destroy_window(data->mlx, data->win);
-		exit(1);
-	}
-	return (0);
+	mlx_destroy_window(data->mlx, data->win);
+    exit(1);
+    return (0);
 }

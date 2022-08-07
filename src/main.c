@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:33:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/07 16:03:20 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/07 17:36:41 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,23 @@ int	main(int argc, char **argv)
         }
         else if (ft_strncmp(argv[1], "julia", 5) == 0)
         {
+            mlx_hook(data->win, 6, 1L<<6, &julia_animation, coord);
             coord->flag = 1;
             julia(coord, data);
+        }
+        else if (ft_strncmp(argv[1], "bonus", 5) == 0)
+        {
+            coord->flag = 2;
+            bonus_fractal(coord, data);
         }
     }
     else if (argc == 1)
     {
-        ft_putendl("Fractal name : mandelbrot || julia");
+        ft_putendl("Fractal name : mandelbrot || julia || bonus");
         ft_putendl("int N for color change");
         return (0);
     }
-    mlx_hook(coord->data->win, 6, 1L<<6, &julia_animation, coord);
+    mlx_hook(data->win, 17, 0, &destroy, data);
     mlx_key_hook(data->win, &key_hook, data);
 	mlx_mouse_hook(data->win, &mouse_hook, coord);
 	mlx_loop(data->mlx);
