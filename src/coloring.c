@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   coloring.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/08 15:51:19 by zkarapet          #+#    #+#             */
+/*   Updated: 2022/08/08 18:06:07 by zkarapet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 double	power(double x, int n)
@@ -37,14 +49,25 @@ double	find_mod(double a, double b)
 	return (mod);
 }
 
-double	v_formula(t_mlx *coord)//N is the count of palette items
+double	v_formula(t_mlx *coord)
 {
 	double	v;
 	double	d;
-	double res;
+	double	res;
 
 	d = power(((double)coord->k / (double)coord->maxiter), 3);
-	res = power(d * coord->N, 2) / sqroot(d * coord->N);
-	v = find_mod(res, coord->N);
+	res = power(d * coord->n, 2) / sqroot(d * coord->n);
+	v = find_mod(res, coord->n);
 	return (v);
 }
+//#include <stdio.h>
+//int main()
+//{
+//	t_mlx *coord;
+//
+//	coord = malloc(sizeof(t_mlx));
+//	coord->k = 60;
+//	coord->maxiter = 200;
+//	coord->n = 200;
+//	printf("%f\n", v_formula(coord));
+//}

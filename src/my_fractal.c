@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia_set.c                                        :+:      :+:    :+:   */
+/*   my_fractal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/08 16:00:40 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/08 18:43:09 by zkarapet         ###   ########.fr       */
+/*   Created: 2022/08/08 15:48:10 by zkarapet          #+#    #+#             */
+/*   Updated: 2022/08/08 18:43:21 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	julia_check(t_mlx *coord)
+int	my_set_check(t_mlx *coord)
 {
 	double	x_cmplx;
 	double	y_cmplx;
@@ -24,15 +24,17 @@ int	julia_check(t_mlx *coord)
 	while (++n < coord->maxiter && coord->ci * coord->ci
 		+ coord->cr * coord->cr < 4)
 	{
-		x_cmplx = coord->cr * coord->cr - coord->ci * coord->ci;
-		y_cmplx = 2 * coord->cr * coord->ci;
-		coord->cr = x_cmplx + coord->zr;
-		coord->ci = y_cmplx + coord->zi;
+		x_cmplx = coord->cr * coord->cr * coord->cr
+			- 3 * coord->cr * coord->ci * coord->ci - 0.5;
+		y_cmplx = 3 * coord->cr * coord->cr * coord->ci
+			- coord->ci * coord->ci * coord->ci;
+		coord->cr = x_cmplx;
+		coord->ci = y_cmplx;
 	}
 	return (n);
 }
 
-void	julia(t_mlx *coord, t_data *data)
+void	my_fractal(t_mlx *coord, t_data *data)
 {
 	coord->x = 0;
 	while (coord->x < coord->width)
@@ -40,9 +42,10 @@ void	julia(t_mlx *coord, t_data *data)
 		coord->y = 0;
 		while (coord->y < coord->height)
 		{
-			coord->k = julia_check(coord);
+			coord->k = my_set_check(coord);
 			if (coord->k == coord->maxiter)
-				my_mlx_pixel_put(data, coord->x, coord->y, 0x000000);
+				my_mlx_pixel_put(data, coord->x,
+					coord->y, 0x000000);
 			else
 				my_mlx_pixel_put(data, coord->x, coord->y,
 					coord->color * v_formula(coord));

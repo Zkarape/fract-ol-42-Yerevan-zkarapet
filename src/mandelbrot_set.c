@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mandelbrot_set.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/08 16:03:55 by zkarapet          #+#    #+#             */
+/*   Updated: 2022/08/08 18:42:56 by zkarapet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int	set_check(t_mlx *coord)
 {
 	double	x_cmplx;
-    double	y_cmplx;
+	double	y_cmplx;
 	int		n;
 	double	cr0;
 	double	ci0;
@@ -13,7 +25,8 @@ int	set_check(t_mlx *coord)
 	coord->ci = coord->y / coord->scale_factor + coord->i;
 	cr0 = coord->cr;
 	ci0 = coord->ci;
-	while (++n < coord->maxiter && coord->ci * coord->ci + coord->cr * coord->cr < 4)
+	while (++n < coord->maxiter && coord->ci * coord->ci
+		+ coord->cr * coord->cr < 4)
 	{
 		x_cmplx = coord->cr * coord->cr - coord->ci * coord->ci;
 		y_cmplx = 2 * coord->cr * coord->ci;
@@ -35,10 +48,12 @@ void	mandelbrot(t_mlx *coord, t_data *data)
 			if (coord->k == coord->maxiter)
 				my_mlx_pixel_put(data, coord->x, coord->y, 0x000000);
 			else
-				my_mlx_pixel_put(data, coord->x, coord->y, coord->color * v_formula(coord));
+				my_mlx_pixel_put(data, coord->x, coord->y,
+					(int)(coord->color * v_formula(coord)));
 			coord->y++;
 		}
 		coord->x++;
 	}
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win,
+		data->img, 0, 100);
 }

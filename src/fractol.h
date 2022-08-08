@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 21:36:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/07 17:33:31 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/08 17:43:51 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <mlx.h>
 # include <stdlib.h>
-#include <stdio.h>
 
 typedef struct data
 {
@@ -38,41 +37,37 @@ typedef struct mlx
 	int		height;
 	double	cr;
 	double	ci;
-    double	zi;
-    double	zr;
+	double	zi;
+	double	zr;
 	double	scale_factor;
 	int		k;
-    double  N;
-    double  argv_N;
+	double	n;
+	double	argv_n;
 	int		maxiter;
 	int		color;
-    int     flag;
+	int		flag;
 	t_data	*data;
 }	t_mlx;
 
-int     destroy(t_data *data);
-void    ft_putendl(char *s);
-int     julia_animation(int x, int y, t_mlx *coord);
-double  ft_atoi(const char *str);
-//int	    set_check(t_mlx *coord);
-//int		julia_check(t_mlx *coord);
-//int		bonus_set_check(t_mlx *coord);
+int		destroy(t_data *data);
+void	ft_putendl(char *s);
+int		julia_animation(int x, int y, t_mlx *coord);
+double	ft_atoi(const char *str);
 double	map_img_part(double y, double height, double minI, double maxI);
 double	map_real_part(double x, double width, double minR, double maxR);
 double	power(double x, int n);
 double	sqroot(double x);
-double	find_mod(double a, double b);
 double	v_formula(t_mlx *coord);
 void	zoom_in(int x, int y, t_mlx *coord);
 void	zoom_out(int x, int y, t_mlx *coord);
-int 	close(t_data *data);
+int		close(t_data *data);
 int		mouse_hook(int mousecode, int x, int y, t_mlx *coord);
-int		key_hook(int keycode, t_data *data);
+int		key_hook(int keycode, t_mlx *coord);
 double	ft_double_atoi(char *str);
 void	mandelbrot(t_mlx *coord, t_data *data);
 void	julia(t_mlx *coord, t_data *data);
-void	bonus_fractal(t_mlx *coord, t_data *data);
+void	my_fractal(t_mlx *coord, t_data *data);
 void	my_mlx_pixel_put(t_data *data, double x, double y, int color);
-int     ft_strncmp(char *s1, char *s2, unsigned int n);
+int		ft_strncmp(char *s1, char *s2, unsigned int n);
 
 #endif
