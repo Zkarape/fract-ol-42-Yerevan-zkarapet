@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:33:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/08 18:38:52 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/08 21:13:07 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -25,6 +25,7 @@ void	declare(t_mlx *coord)
 	coord->zr = -0.5;
 	coord->zi = -0.5;
 	coord->n = coord->argv_n;
+	coord->flag = 5;
 }
 
 void	data_declare(double width, double height, t_data *data)
@@ -47,21 +48,24 @@ void	mlx_func(t_mlx *coord, t_data *data)
 
 void	short_but_main(char **argv, t_mlx *coord, t_data *data)
 {
-	if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
+	if (ft_atoi(argv[2]) >= 0)
 	{
-		coord->flag = 3;
-		mandelbrot(coord, coord->data);
-	}
-	else if (ft_strncmp(argv[1], "julia", 5) == 0)
-	{
-		mlx_hook(data->win, 6, 1L << 6, &julia_animation, coord);
-		coord->flag = 1;
-		julia(coord, coord->data);
-	}
-	else if (ft_strncmp(argv[1], "bonus", 5) == 0)
-	{
-		coord->flag = 2;
-		my_fractal(coord, coord->data);
+		if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
+		{
+			coord->flag = 3;
+			mandelbrot(coord, coord->data);
+		}
+		else if (ft_strncmp(argv[1], "julia", 5) == 0)
+		{
+			mlx_hook(data->win, 6, 1L << 6, &julia_animation, coord);
+			coord->flag = 1;
+			julia(coord, coord->data);
+		}
+		else if (ft_strncmp(argv[1], "bonus", 5) == 0)
+		{
+			coord->flag = 2;
+			my_fractal(coord, coord->data);
+		}
 	}
 }
 
@@ -76,13 +80,15 @@ int	main(int argc, char **argv)
 	declare(coord);
 	data_declare(coord->width, coord->height, data);
 	coord->data = data;
-	if (argc >= 2)
-		short_but_main(argv, coord, coord->data);
-	else if (argc == 1)
+	if (argc >= 3 && coord->flag != 5)
+	{
+		short_but_main(argv, coord, coord->data);	
+		mlx_func(coord, data);
+	}
+	else if (coord->flag == 5 || argc <= 2)
 	{
 		ft_putendl("Fractal name : mandelbrot || julia || bonus");
 		ft_putendl("and then int N for color change");
 		return (0);
 	}
-	mlx_func(coord, data);
 }

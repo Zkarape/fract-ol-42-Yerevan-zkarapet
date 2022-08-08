@@ -6,25 +6,35 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 16:07:59 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/08 16:08:53 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/08 20:31:47 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fractol.h"
+
 double	ft_atoi(const char *str)
 {
-	unsigned int	res;
-	int				min;
-	int				i;
+	unsigned int    res;
+	int             min;
+	int             i;
 
 	min = 1;
 	res = 0;
 	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			min = -1;
+		i++;
+	}
 	while (str[i] >= 48 && str[i] <= 57)
 	{
 		res = res * 10 + (str[i] - '0');
 		i++;
 	}
-	return ((double)res * min);
+	return ((double)(res * min));
 }
 
 int	ft_strncmp(char *s1, char *s2, unsigned int n)

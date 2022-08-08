@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 16:03:55 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/08 18:42:56 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/08 18:53:19 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ void	mandelbrot(t_mlx *coord, t_data *data)
 				my_mlx_pixel_put(data, coord->x, coord->y, 0x000000);
 			else
 				my_mlx_pixel_put(data, coord->x, coord->y,
-					(int)(coord->color * v_formula(coord)));
+					(coord->color * v_formula(coord)));
 			coord->y++;
 		}
 		coord->x++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win,
-		data->img, 0, 100);
+		data->img, 0, 0);
 }
