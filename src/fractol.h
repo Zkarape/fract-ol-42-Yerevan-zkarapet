@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 21:36:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/08 17:43:51 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/09 21:39:19 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct mlx
 	int		maxiter;
 	int		color;
 	int		flag;
+	int		yes;
 	t_data	*data;
 }	t_mlx;
 

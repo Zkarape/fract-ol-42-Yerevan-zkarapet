@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 15:48:10 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/08 19:03:14 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/09 21:44:38 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	my_set_check(t_mlx *coord)
 		+ coord->cr * coord->cr < 4)
 	{
 		x_cmplx = coord->cr * coord->cr * coord->cr
-			- 3 * coord->cr * coord->ci * coord->ci - 0.4;
+			- 3 * coord->cr * coord->ci * coord->ci - 0.5;
 		y_cmplx = 3 * coord->cr * coord->cr * coord->ci
 			- coord->ci * coord->ci * coord->ci;
 		coord->cr = x_cmplx;
