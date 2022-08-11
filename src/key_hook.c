@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 16:02:27 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/09 22:05:12 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/11 12:22:39 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ int	key_hook(int keycode, t_mlx *coord)
 	}
 	color(keycode, coord);
 	if (keycode == 126)
-		coord->i += 30 / coord->scale_factor;
-	else if (keycode == 124)
-		coord->r -= 30 / coord->scale_factor;
-	else if (keycode == 123)
-		coord->r += 30 / coord->scale_factor;
-	else if (keycode == 125)
 		coord->i -= 30 / coord->scale_factor;
+	else if (keycode == 124)
+		coord->r += 30 / coord->scale_factor;
+	else if (keycode == 123)
+		coord->r -= 30 / coord->scale_factor;
+	else if (keycode == 125)
+		coord->i += 30 / coord->scale_factor;
 	if (coord->flag == 3)
 		mandelbrot(coord, coord->data);
 	else if (coord->flag == 1)

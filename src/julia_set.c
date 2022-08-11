@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 16:00:40 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/08 18:53:35 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/11 12:20:41 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,5 @@ void	julia(t_mlx *coord, t_data *data)
 	}
 	mlx_put_image_to_window(data->mlx, data->win,
 		data->img, 0, 0);
+	string_put(data);
 }

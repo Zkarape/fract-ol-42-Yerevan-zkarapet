@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 16:03:55 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/09 22:01:05 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/11 12:20:31 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,5 @@ void	mandelbrot(t_mlx *coord, t_data *data)
 	}
 	mlx_put_image_to_window(data->mlx, data->win,
 		data->img, 0, 0);
+	string_put(data);
 }
