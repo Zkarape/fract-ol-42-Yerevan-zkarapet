@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 16:02:27 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/08 18:54:22 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/09 22:05:12 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	color(int keycode, t_mlx *coord)
 {
 	if (keycode == 0)
-		coord->color = 255255255;
+		coord->color = 25582242;
 	else if (keycode == 1)
-		coord->color = 2550216;
+		coord->color = 255255255;
 	else if (keycode == 2)
-		coord->color = 7020127;
+		coord->color = 233160160;
 	else if (keycode == 13)
-		coord->color = 255240;
+		coord->color = 163128203;
 }
 
 int	key_hook(int keycode, t_mlx *coord)

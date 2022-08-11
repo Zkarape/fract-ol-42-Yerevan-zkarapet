@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:33:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/09 21:42:13 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/11 11:26:45 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -24,9 +24,8 @@ void	declare(t_mlx *coord)
 	coord->color = 72013;
 	coord->zr = -0.5;
 	coord->zi = -0.5;
-	coord->n = coord->argv_n;
+	coord->n = 0;
 	coord->flag = 5;
-	coord->yes = 0;
 }
 
 void	data_declare(double width, double height, t_data *data)
@@ -43,35 +42,30 @@ void	mlx_func(t_mlx *coord, t_data *data)
 	mlx_hook(data->win, 17, 0, &destroy, data);
 	mlx_key_hook(data->win, &key_hook, coord);
 	mlx_mouse_hook(data->win, &mouse_hook, coord);
-	mlx_string_put(data->mlx, data->win, 300, 0, 0xFFFFFF, "Press A, W, D, S");
 	mlx_loop(data->mlx);
 }
 
-int	short_but_main(char **argv, t_mlx *coord, t_data *data)
+void	short_but_main(char **argv, t_mlx *coord, t_data *data)
 {
 	if (ft_atoi(argv[2]) >= 0)
 	{
 		if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
 		{
-			coord->yes = 3;
 			coord->flag = 3;
 			mandelbrot(coord, coord->data);
 		}
 		else if (ft_strncmp(argv[1], "julia", 5) == 0)
 		{
-			coord->yes = 1;
-			mlx_hook(data->win, 6, 1L << 6, &julia_animation, coord);
 			coord->flag = 1;
+			mlx_hook(data->win, 6, 1L << 6, &julia_animation, coord);
 			julia(coord, coord->data);
 		}
 		else if (ft_strncmp(argv[1], "bonus", 5) == 0)
 		{
-			coord->yes = 2;
 			coord->flag = 2;
 			my_fractal(coord, coord->data);
 		}
 	}
-	return (coord->yes);
 }
 
 int	main(int argc, char **argv)
@@ -79,21 +73,25 @@ int	main(int argc, char **argv)
 	t_mlx	*coord;
 	t_data	*data;
 
-	coord = malloc(sizeof(t_mlx));
-	data = malloc(sizeof(t_data));
-	coord->argv_n = ft_atoi(argv[2]);
-	declare(coord);
-	data_declare(coord->width, coord->height, data);
-	coord->data = data;
-	if (argc >= 3 && short_but_main(argv, coord, coord->data) != 0)
+	if (argc < 3 || argc > 3)
 	{
-		short_but_main(argv, coord, coord->data);
-		mlx_func(coord, data);
-	}
-	else if (coord->flag == 5 || argc <= 2)
-	{
-		ft_putendl("Fractal name : mandelbrot || julia || bonus");
-		ft_putendl("and then int N for color change");
+		print();
 		return (0);
+	}
+	else if (argc == 3)
+	{
+		coord = malloc(sizeof(t_mlx));
+		data = malloc(sizeof(t_data));
+		declare(coord);
+		data_declare(coord->width, coord->height, data);
+		coord->data = data;
+		coord->n = ft_atoi(argv[2]);
+		short_but_main(argv, coord, data);
+		if (coord->flag == 5)
+		{
+			print();
+			return (0);
+		}
+		mlx_func(coord, coord->data);
 	}
 }

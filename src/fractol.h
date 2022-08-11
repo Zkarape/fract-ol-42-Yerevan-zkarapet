@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 21:36:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/09 21:39:19 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/11 11:19:58 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct mlx
 	int		maxiter;
 	int		color;
 	int		flag;
-	int		yes;
 	t_data	*data;
 }	t_mlx;
 
@@ -70,5 +69,6 @@ void	julia(t_mlx *coord, t_data *data);
 void	my_fractal(t_mlx *coord, t_data *data);
 void	my_mlx_pixel_put(t_data *data, double x, double y, int color);
 int		ft_strncmp(char *s1, char *s2, unsigned int n);
+void	print(void);
 
 #endif

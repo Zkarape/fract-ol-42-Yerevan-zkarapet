@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 15:51:19 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/09 21:32:06 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/10 18:30:09 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,3 @@ double	v_formula(t_mlx *coord)
 	v = find_mod(res, coord->n);
 	return (v);
 }
-//#include <stdio.h>
-//int main()
-//{
-//	t_mlx *coord;
-//
-//	coord = malloc(sizeof(t_mlx));
-//	coord->k = 60;
-//	coord->maxiter = 200;
-//	coord->n = 200;
-//	printf("%f\n", v_formula(coord));
-//}
