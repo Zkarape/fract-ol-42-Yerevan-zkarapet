@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:33:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/13 11:48:20 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/13 12:01:53 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -78,7 +78,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 3 || argc > 3)
 		print();
-	else if (argc == 3)
+	else
 	{
 		coord = malloc(sizeof(t_mlx));
 		data = malloc(sizeof(t_data));

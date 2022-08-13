@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 16:04:58 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/08 17:41:35 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/13 12:01:33 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,5 @@ int	mouse_hook(int mousecode, int x, int y, t_mlx *coord)
 int	destroy(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
-	exit(1);
-	return (0);
+	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 16:07:59 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/13 11:46:28 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/13 12:01:43 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ void	print(void)
 {
 	ft_putendl("Fractal name : mandelbrot || julia || bonus");
 	ft_putendl("and then int N >= 0 for color change");
-	exit(1);
+	exit(0);
 }
