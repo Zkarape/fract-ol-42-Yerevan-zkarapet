@@ -6,38 +6,36 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 16:07:59 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/11 11:23:06 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/13 11:46:28 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double	ft_atoi(const char *str)
+double	ft_atoi(const char *str, t_mlx *coord)
 {
-	unsigned int	res;
-	int				min;
-	int				i;
-
-	min = 1;
-	res = 0;
-	i = 0;
-	if (str[i])
+	if (*str)
 	{
-		while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
-			i++;
-		if (str[i] == '-' || str[i] == '+')
+		while ((*str >= 9 && *str <= 13) || *str == ' ')
+			str++;
+		if (*str == '-' || *str == '+')
 		{
-			if (str[i] == '-')
-				min = -1;
-			i++;
+			if (*str == '-')
+				coord->min = -1;
+			str++;
 		}
-		while (str[i] >= 48 && str[i] <= 57)
+		while (*str && *str >= 48 && *str <= 57)
 		{
-			res = res * 10 + (str[i] - '0');
-			i++;
+			coord->res = coord->res * 10 + (*str - '0');
+			str++;
+		}
+		if ((*str < 48 || *str > 57) && *str)
+		{
+			coord->atoi_flag = 2;
+			return (0);
 		}
 	}
-	return ((double)(res * min));
+	return ((double)(coord->res * coord->min));
 }
 
 int	ft_strncmp(char *s1, char *s2, unsigned int n)
@@ -72,4 +70,5 @@ void	print(void)
 {
 	ft_putendl("Fractal name : mandelbrot || julia || bonus");
 	ft_putendl("and then int N >= 0 for color change");
+	exit(1);
 }

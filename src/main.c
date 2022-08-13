@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:33:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/11 11:41:37 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/13 11:48:20 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -26,6 +26,9 @@ void	declare(t_mlx *coord)
 	coord->zi = -0.5;
 	coord->n = 0;
 	coord->flag = 5;
+	coord->atoi_flag = 3;
+	coord->res = 0;
+	coord->min = 1;
 }
 
 void	data_declare(double width, double height, t_data *data)
@@ -47,7 +50,7 @@ void	mlx_func(t_mlx *coord, t_data *data)
 
 void	short_but_main(char **argv, t_mlx *coord, t_data *data)
 {
-	if (ft_atoi(argv[2]) >= 0)
+	if (ft_atoi(argv[2], coord) >= 0)
 	{
 		if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
 		{
@@ -74,10 +77,7 @@ int	main(int argc, char **argv)
 	t_data	*data;
 
 	if (argc < 3 || argc > 3)
-	{
 		print();
-		return (0);
-	}
 	else if (argc == 3)
 	{
 		coord = malloc(sizeof(t_mlx));
@@ -85,13 +85,12 @@ int	main(int argc, char **argv)
 		declare(coord);
 		data_declare(coord->width, coord->height, data);
 		coord->data = data;
-		coord->n = ft_atoi(argv[2]);
+		coord->n = ft_atoi(argv[2], coord);
+		if (coord->atoi_flag == 2)
+			print();
 		short_but_main(argv, coord, data);
 		if (coord->flag == 5)
-		{
 			print();
-			return (0);
-		}
 		mlx_func(coord, coord->data);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: zkarapet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 21:36:11 by zkarapet          #+#    #+#             */
-/*   Updated: 2022/08/11 12:19:53 by zkarapet         ###   ########.fr       */
+/*   Updated: 2022/08/13 11:45:00 by zkarapet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,33 @@ typedef struct data
 
 typedef struct mlx
 {
-	int		x;
-	int		y;
-	double	r;
-	double	i;
-	int		width;
-	int		height;
-	double	cr;
-	double	ci;
-	double	zi;
-	double	zr;
-	double	scale_factor;
-	int		k;
-	double	n;
-	double	argv_n;
-	int		maxiter;
-	int		color;
-	int		flag;
-	t_data	*data;
+	int				x;
+	int				y;
+	double			r;
+	double			i;
+	int				width;
+	int				height;
+	double			cr;
+	double			ci;
+	double			zi;
+	double			zr;
+	double			scale_factor;
+	int				k;
+	double			n;
+	double			argv_n;
+	int				maxiter;
+	int				color;
+	int				flag;
+	int				atoi_flag;
+	unsigned int	res;
+	int				min;
+	t_data			*data;
 }	t_mlx;
 
 int		destroy(t_data *data);
 void	ft_putendl(char *s);
 int		julia_animation(int x, int y, t_mlx *coord);
-double	ft_atoi(const char *str);
+double	ft_atoi(const char *str, t_mlx *coord);
 double	map_img_part(double y, double height, double minI, double maxI);
 double	map_real_part(double x, double width, double minR, double maxR);
 double	power(double x, int n);
@@ -63,7 +66,6 @@ void	zoom_out(int x, int y, t_mlx *coord);
 int		close(t_data *data);
 int		mouse_hook(int mousecode, int x, int y, t_mlx *coord);
 int		key_hook(int keycode, t_mlx *coord);
-double	ft_double_atoi(char *str);
 void	mandelbrot(t_mlx *coord, t_data *data);
 void	julia(t_mlx *coord, t_data *data);
 void	my_fractal(t_mlx *coord, t_data *data);
