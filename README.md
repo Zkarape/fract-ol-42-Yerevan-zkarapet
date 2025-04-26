@@ -1,10 +1,11 @@
-Fract'ol
-📖 Project Overview
+# Fract'ol
+
+## 📖 Project Overview
 Fract'ol is a 42 School graphical project focused on exploring and rendering fractals.
 The project uses MiniLibX (a minimal graphics library) to open a window and render mathematical fractals in real time.
 In addition to implementing the classic Mandelbrot and Julia sets, this version features a custom fractal designed from scratch!
 
-🛠 Project Requirements
+## 🛠 Project Requirements
 Only C programming language is allowed.
 
 Use of MiniLibX for graphics.
@@ -19,7 +20,7 @@ Code must follow the 42 Norm coding style.
 
 No memory leaks or crashes are allowed.
 
-🖥 How to Use
+## 🖥 How to Use
 1. Compilation
 bash
 make
@@ -38,7 +39,7 @@ bash
 ./fractol mandelbrot
 ./fractol julia
 ./fractol my_fractal
-🧩 Controls
+## 🧩 Controls
 
 Key / Mouse	Action
 Arrow Keys	Move around the fractal
@@ -47,7 +48,7 @@ Scroll Up / Down	Zoom in / Zoom out
 Mouse Move (Julia)	Change Julia set parameters dynamically
 C	Change color palette
 ESC	Exit the program
-🧠 Fractals Implemented
+## 🧠 Fractals Implemented
 1. Mandelbrot Set
 The classic and most iconic fractal.
 Each point 
@@ -70,7 +71,7 @@ Distinctive aesthetic properties
 Note:
 This fractal is fully invented, making the project even more creative and personalized!
 
-🏛 Project Structure
+## 🏛 Project Structure
 bash
 fractol/
 ├── Makefile
@@ -85,7 +86,7 @@ fractol/
 ├── key_hook.c         # Keyboard event handling
 ├── utils.c            # Utility functions
 ├── ft_putendl.c       # Minimal I/O functions
-✨ Features
+## ✨ Features
 Dynamic zooming and panning.
 
 Real-time Julia parameter modification based on mouse position.
@@ -94,7 +95,7 @@ Multiple color palettes to create beautiful, vibrant images.
 
 Original fractal creation demonstrating creativity beyond the mandatory part.
 
-📚 References
+## 📚 References
 Fractals - Wikipedia
 
 Mandelbrot Set - Wikipedia
@@ -103,8 +104,6 @@ Julia Set - Wikipedia
 
 MiniLibX Documentation (42 School)
 
-🧙 Author
+## 🧙 Author
 Project by zkarapet
 42 School — Fract'ol
-
-🔥 Screenshots
