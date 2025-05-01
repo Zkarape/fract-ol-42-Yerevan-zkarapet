@@ -126,3 +126,10 @@ MiniLibX Documentation (42 School)
 ## 🧙 Author
 Project by zkarapet
 42 School — Fract'ol
+
+
+
+https://github.com/user-attachments/assets/2009b935-0332-4c9b-bd36-46b3dfa2bf9a
+
+
+
