@@ -96,11 +96,30 @@ Multiple color palettes to create beautiful, vibrant images.
 Original fractal creation demonstrating creativity beyond the mandatory part.
 
 ## 📚 References
-Fractals - Wikipedia
 
-Mandelbrot Set - Wikipedia
+https://en.wikipedia.org/wiki/Mandelbrot_set
 
-Julia Set - Wikipedia
+https://www.youtube.com/playlist?list=PLiaHhY2iBX9g6KIvZ_703G3KJXapKkNaF
+
+https://www.youtube.com/watch?v=MwjsO6aniig
+
+https://realpython.com/mandelbrot-set-python/
+
+
+https://docs.microsoft.com/en-us/cpp/cpp/event-handling-in-native-cpp?view=msvc-170
+
+https://gontjarow.github.io/MiniLibX/
+
+https://en.wikipedia.org/wiki/Plotting_algorithms_for_the_Mandelbrot_set
+
+
+https://www.wikihow.com/Plot-the-Mandelbrot-Set-By-Hand
+
+https://github.com/agavrel/42-fractol
+
+https://github.com/BenSouchet/fractol
+
+https://harm-smits.github.io/42docs/libs/minilibx/colors.html
 
 MiniLibX Documentation (42 School)
 
